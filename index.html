@@ -21,18 +21,20 @@
 
 		<div class='container'>
 			<div class='form'>
-				<label>Hash key</label>
-				<input placeholder='Hash'/>
-				<label>Hash IV</label>
-				<input placeholder='IV'/>
+				<label>Survey Hash</label>
+				<input id='survey-hash' placeholder='Survey'/>
 				<label>Answer Hash</label>
-				<input placeholder='Answer Hash'/>
-				<button>Get Answer</button>
+				<input id='answer-hash' placeholder='Answer Hash'/>
+				<label>Hash key</label>
+				<input id='hash-key' placeholder='Hash'/>
+				<label>Hash IV</label>
+				<input id='hash-iv' placeholder='IV'/>
+				<button id='get-data'>Get Answer</button>
 			</div>
 
 			<div class='preview'>
 				<label>Result</label>
-				<textarea rows='10'></textarea>
+				<textarea id='result' rows='16'></textarea>
 			</div>
 		</div>
 		
