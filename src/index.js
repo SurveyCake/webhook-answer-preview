@@ -14,12 +14,13 @@ const parseData = ((dat, key, iv) => {
     return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8))
 });
 
-const getData = ((survey, fileHash) => (
-    fetch(`https://www.surveycake.com/webhook/v0/${survey}/${fileHash}`)
+const getData = ((domain, survey, fileHash) => (
+    fetch(`${domain}/webhook/v0/${survey}/${fileHash}`)
         .then((res) => res.text())
 ));
 
 const getAnswer = (() => {
+    const domain = document.getElementById('webhook-domain').value;
     const survey = document.getElementById('survey-hash').value;
     const fileHash = document.getElementById('answer-hash').value;
     const hashKey = document.getElementById('hash-key').value;
@@ -29,7 +30,7 @@ const getAnswer = (() => {
         return;
     }
 
-    getData(survey, fileHash)
+    getData(domain, survey, fileHash)
         .then((res) => parseData(res, hashKey, hashIv))
         .then((data) => {
             document.getElementById('result').textContent = JSON.stringify(data);
