@@ -12,16 +12,16 @@
 
 ### 使用方式
 
-您於 SurveyCake 設定的 Webhook URL，我們會使用 POST method 的方式去驅動，所以在開發階段會需要自己把 `POST` 過來的資訊印出來比較麻煩。
+您於 SurveyCake 設定的 Webhook URL，我們會使用 POST method 的方式去驅動，所以在開發階段會需要自己把 `POST` 過來的資訊印出來比較麻煩。
 
 所以我們建議你先利用 `自訂感謝頁網址` 來快速取得測試工具需要的 `${SVID}` & `${HASH}`。
 
 ![image](/src/images/setting-redirection-url.png)
 
-1. 請在問卷的 `自訂感謝頁網址` 欄位，填入小工具網址，儲存設定。
+1. 請在問卷的 `自訂感謝頁網址` 欄位，填入小工具網址，儲存設定。
     - `https://surveycake.github.io/webhook-answer-preview/`
 2. 打開問卷進行填答，並送出問卷。
-3. 送出問卷後，會自動跳轉到你填入的小工具網址
+3. 送出問卷後，會自動跳轉到你填入的小工具網址
 4. 此時你會在網址後方看到 SurveyCake 透過 GET method 傳送的 ${SVID} 與 ${HASH}
     - `?svid=${SVID}&hash=${HASH}`
 5. 此時將網址上的 `${SVID}` 與 ${HASH} 填入小工具對應的欄位
