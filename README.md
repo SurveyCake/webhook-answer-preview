@@ -29,6 +29,9 @@
 7. 按下 `get answer preview` 即可在右方查看到答案結構。
 
 
-### 接下來
+### 自己動手做
 
-依據預覽的答案結構試著撰寫自己的 Webhook URL 邏輯吧。
+接下來，試著撰寫自己的 Webhook URL 邏輯吧。
+
+我們提供如何串接 SurveyCake Webhook 的文件，請參閱另一個 Project: https://github.com/SurveyCake/webhook
+
