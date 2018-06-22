@@ -16,25 +16,33 @@
 	<body>
 		<div class='hero'>
 			<h2 class='primary'>Webhook Answer Preview</h2>
-			<p>使用 Survey Webhook Hash & IV 及 Answer Hash 測試答案結構</p>
+			<p>這是一個測試工具，在你開發自己的 Webhook Url 時，可以先透過這個工具，從 Webhook Query API 取得答案，必且搭配 Hash key & IV key 解密查看答案結構</p>
 		</div>
 
 		<div class='container'>
 			<div class='form'>
-				<label>Webhook API Domain</label>
-				<input id='webhook-domain' value='https://www.surveycake.com' />
-				<label>Survey Hash</label>
-				<input id='survey-hash' placeholder='Survey'/>
-				<label>Answer Hash</label>
-				<input id='answer-hash' placeholder='Answer Hash'/>
+				<label>Webhook Query API Path</label>
+				<small>請務必確認格式為 <code>https://${Domain}/webhook/v0/</code></small>
+				<input id='webhook-query-api' value='https://www.surveycake.com/webhook/v0/' />
+				<label>Survey ID / 問卷獨立編號</label>
+				<small><code>${SVID}</code> 是從 Webhook Url 接收到的 <code>$POST['svid']</code></small>
+				<input id='survey-id' placeholder='ex: yPZQe' />
+				<label>Answer Hash / 答案獨立編號</label>
+				<small><code>${HASH}</code> 是從 Webhook Url 接收到的 <code>$POST['hash']</code></small>
+				<input id='answer-hash' placeholder='ex: 372f7559d64f86df13eb9e2cbc7953c0' />
 				<label>Hash key</label>
-				<input id='hash-key' placeholder='Hash'/>
-				<label>Hash IV</label>
-				<input id='hash-iv' placeholder='IV'/>
-				<button id='get-data'>Get Answer</button>
+				<small>從 SurveyCake 後台取得的 Webhook 解碼資訊</small>
+				<input id='hash-key' />
+				<label>IV key</label>
+				<small>從 SurveyCake 後台取得的 Webhook 解碼資訊</small>
+				<input id='iv-key' />
+				<button id='get-data'>Get Answer Preview</button>
 			</div>
 
 			<div class='preview'>
+				<label>組合後 Webhook Query API 預覽</label>
+				<code id='webhook-query-api-preview'></code>
+				<hr/>
 				<label>Result</label>
 				<textarea id='result' rows='16'></textarea>
 			</div>

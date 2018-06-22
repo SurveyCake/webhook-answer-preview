@@ -14,29 +14,57 @@ const parseData = ((dat, key, iv) => {
     return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8))
 });
 
-const getData = ((domain, survey, fileHash) => (
-    fetch(`${domain}/webhook/v0/${survey}/${fileHash}`)
+const getWebhookQueryApi = () => {
+    const domain = document.getElementById('webhook-query-api').value;
+    const surveyId = document.getElementById('survey-id').value;
+    const answerHash = document.getElementById('answer-hash').value;
+
+    return `
+        ${domain || 'https://${Domain}/webhook/v0/'}${surveyId || '${SVID}'}/${answerHash || '${HASH}'}
+    `;
+};
+
+const getData = (() => (
+    fetch(getWebhookQueryApi())
         .then((res) => res.text())
 ));
 
-const getAnswer = (() => {
-    const domain = document.getElementById('webhook-domain').value;
-    const survey = document.getElementById('survey-hash').value;
-    const fileHash = document.getElementById('answer-hash').value;
-    const hashKey = document.getElementById('hash-key').value;
-    const hashIv = document.getElementById('hash-iv').value;
+const updateWebhookQueryApiPreview = () => {
+    document.getElementById('webhook-query-api-preview').innerHTML = getWebhookQueryApi();
+};
 
-    if (!survey || !fileHash || !hashKey || !hashIv) {
+const getAnswer = (() => {
+    const domain = document.getElementById('webhook-query-api').value;
+    const surveyId = document.getElementById('survey-id').value;
+    const answerHash = document.getElementById('answer-hash').value;
+    const hashKey = document.getElementById('hash-key').value;
+    const ivKey = document.getElementById('iv-key').value;
+
+    if (!surveyId || !answerHash || !hashKey || !ivKey) {
         return;
     }
 
-    getData(domain, survey, fileHash)
-        .then((res) => parseData(res, hashKey, hashIv))
+    getData()
+        .then((res) => parseData(res, hashKey, ivKey))
         .then((data) => {
             document.getElementById('result').textContent = JSON.stringify(data);
         });
 });
 
+document.getElementById('webhook-query-api').addEventListener('change', function (){
+    updateWebhookQueryApiPreview();
+});
+
+document.getElementById('survey-id').addEventListener('change', function (){
+    updateWebhookQueryApiPreview();
+});
+
+document.getElementById('answer-hash').addEventListener('change', function (){
+    updateWebhookQueryApiPreview();
+});
+
 document.getElementById('get-data').addEventListener('click', () => {
     getAnswer();
 });
+
+updateWebhookQueryApiPreview();
