@@ -1,5 +1,7 @@
 # Webhook Answer Preview Tool
 
+[繁中](./README.md) | [English](./README-en.md)
+
 這是一個 Webhook Answer 結構測試工具，在你開發自己的 Webhook URL 時，可以先透過這個工具，從 Webhook Query API 取得答案，並且搭配 Hash key & IV key 解密查看答案結構。
 
 - 網址： https://surveycake.github.io/webhook-answer-preview/
@@ -16,7 +18,7 @@
 
 所以我們建議你先利用 `自訂感謝頁網址` 來快速取得測試工具需要的 `${SVID}` & `${HASH}`。
 
-![image](/src/images/setting-redirection-url.png)
+![image](/src/images/tw/setting-redirection-url.png)
 
 1. 請在問卷的 `自訂感謝頁網址` 欄位，填入小工具網址，儲存設定。
     - `https://surveycake.github.io/webhook-answer-preview/`
@@ -26,6 +28,7 @@
     - `?svid=${SVID}&hash=${HASH}`
 5. 此時將網址上的 `${SVID}` 與 ${HASH} 填入小工具對應的欄位
 6. 於 SurveyCake Admin 後台取得該份問卷的 webhook 解碼 Hash key & IV key，填入對應欄位
+    - ![image](/src/images/tw/keys.jpg)
 7. 按下 `get answer preview` 即可在右方查看到答案結構。
 
 
