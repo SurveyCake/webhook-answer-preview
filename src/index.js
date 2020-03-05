@@ -24,8 +24,14 @@ const getWebhookQueryApi = () => {
     `;
 };
 
-const getData = (() => (
-    fetch(getWebhookQueryApi())
+const getData = ((headers) => (
+    fetch(getWebhookQueryApi(), 
+        {
+            headers: {
+                ...headers,
+            }
+        }
+    )
         .then((res) => res.text())
 ));
 
@@ -33,7 +39,9 @@ const updateWebhookQueryApiPreview = () => {
     document.getElementById('webhook-query-api-preview').innerHTML = getWebhookQueryApi();
 };
 
-const getAnswer = (() => {
+const getAnswer = ((headers) => {
+    document.getElementById('result').textContent = '';
+
     const domain = document.getElementById('webhook-query-api').value;
     const surveyId = document.getElementById('survey-id').value;
     const answerHash = document.getElementById('answer-hash').value;
@@ -44,7 +52,7 @@ const getAnswer = (() => {
         return;
     }
 
-    getData()
+    getData(headers)
         .then((res) => parseData(res, hashKey, ivKey))
         .then((data) => {
             document.getElementById('result').textContent = JSON.stringify(data);
@@ -64,7 +72,11 @@ document.getElementById('answer-hash').addEventListener('change', function (){
 });
 
 document.getElementById('get-data').addEventListener('click', () => {
-    getAnswer();
+    const headerExist = !!document.getElementById('headers');
+
+    const headers = headerExist ? JSON.parse(document.getElementById('headers').value) : {};
+
+    getAnswer(headers);
 });
 
 updateWebhookQueryApiPreview();

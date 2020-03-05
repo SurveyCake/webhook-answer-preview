@@ -36,6 +36,15 @@
 				<label>IV key</label>
 				<small>從 SurveyCake 後台取得的 Webhook 解碼資訊</small>
 				<input id='iv-key' />
+				<label>Request Headers</label>
+				<small>Request with header data, testing pre-flight request, only support after <b>v4.5.9</b></small>
+				<pre>
+{
+	"content-type": "application/json",
+	"accept": "application/json"
+}					
+				</pre>
+				<textarea id='headers' rows='5'>{}</textarea>
 				<button id='get-data'>Get Answer Preview</button>
 			</div>
 
