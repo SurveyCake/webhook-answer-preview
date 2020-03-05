@@ -72,9 +72,10 @@ document.getElementById('answer-hash').addEventListener('change', function (){
 });
 
 document.getElementById('get-data').addEventListener('click', () => {
-    const headerExist = !!document.getElementById('headers');
-
-    const headers = headerExist ? JSON.parse(document.getElementById('headers').value) : {};
+    const headers = document.getElementById('headers').value ?
+        JSON.parse(document.getElementById('headers').value)
+        :
+        {};
 
     getAnswer(headers);
 });
