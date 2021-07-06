@@ -55,7 +55,7 @@ const getAnswer = ((headers) => {
     getData(headers)
         .then((res) => parseData(res, hashKey, ivKey))
         .then((data) => {
-            document.getElementById('result').textContent = JSON.stringify(data);
+            document.getElementById('result').textContent = JSON.stringify(data, null, 2);
         });
 });
 
