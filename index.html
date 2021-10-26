@@ -22,8 +22,8 @@
 		<div class='container'>
 			<div class='form'>
 				<label>Webhook Query API Path</label>
-				<small>請務必確認格式為 <code>https://${Domain}/webhook/v0/</code></small>
-				<input id='webhook-query-api' value='https://www.surveycake.com/webhook/v0/' />
+				<small>請務必確認格式為 <code>https://${SURVEYCAKE_DOMAIN}/webhook/v0/</code></small>
+				<input id='webhook-query-api' placeholder='ex: https://www.surveycake.com/webhook/v0/' />
 				<label>Survey ID / 問卷獨立編號</label>
 				<small><code>${SVID}</code> 是從 Webhook Url 接收到的 <code>$POST['svid']</code></small>
 				<input id='survey-id' placeholder='ex: yPZQe' />
