@@ -20,7 +20,7 @@ const getWebhookQueryApi = () => {
     const answerHash = document.getElementById('answer-hash').value;
 
     return `
-        ${domain || 'https://${Domain}/webhook/v0/'}${surveyId || '${SVID}'}/${answerHash || '${HASH}'}
+        ${domain || 'https://${SURVEYCAKE_DOMAIN}/webhook/v0/'}${surveyId || '${SVID}'}/${answerHash || '${HASH}'}
     `;
 };
 
